@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moto Spido</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.cdnfonts.com/css/new-x-digital-tfb" rel="stylesheet">
+</head>
+
+<body>
+    <div class="speedo-root">
+        <!-- Left side bars -->
+        <div class="left-bars">
+            <div class="bar-container">
+                <div class="bar-label" id="health-label">H</div>
+                <div class="bar-wrapper">
+                    <div class="bar-fill" id="health-bar"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right side bars -->
+        <div class="right-bars">
+            <div class="bar-container">
+                <div class="bar-label" id="fuel-label">F</div>
+                <div class="bar-wrapper">
+                    <div class="bar-fill" id="fuel-bar"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Speed display positioned at bottom left -->
+        <div class="speed-container">
+            <div class="speed-display" id="speed-display">0</div>
+            <div class="speed-unit" id="speed-unit">MPH</div>
+            <div class="gear-display" id="gear-display">N</div>
+        </div>
+
+        <!-- RPM boxes -->
+        <div class="rpm-container">
+            <div class="rpm-boxes" id="rpm-boxes"></div>
+        </div>
+
+        <!-- Status icons -->
+        <div class="status-icons">
+            <!-- Engine Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" id="icon-engine" width="24" height="24">
+                <defs>
+                    <filter id="engineFilterGrey">
+                        <feFlood flood-color="#666666" result="flood" />
+                        <feComposite in="flood" in2="SourceAlpha" operator="atop" />
+                    </filter>
+                    <filter id="engineFilterGreen">
+                        <feFlood flood-color="#00ff00" result="flood" />
+                        <feComposite in="flood" in2="SourceAlpha" operator="atop" />
+                    </filter>
+                    <filter id="engineFilterYellow">
+                        <feFlood flood-color="#ffff00" result="flood" />
+                        <feComposite in="flood" in2="SourceAlpha" operator="atop" />
+                    </filter>
+                    <filter id="engineFilterRed">
+                        <feFlood flood-color="#ff0000" result="flood" />
+                        <feComposite in="flood" in2="SourceAlpha" operator="atop" />
+                    </filter>
+                </defs>
+                <image width="100%" height="100%" href="texture/engine.png" filter="url(#engineFilterGrey)" />
+            </svg>
+
+            <!-- Fuel Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" id="icon-fuel" width="24" height="24">
+                <defs>
+                    <filter id="fuelFilterHigh">
+                        <feFlood flood-color="#00ff00" result="flood" />
+                        <feComposite in="flood" in2="SourceAlpha" operator="atop" />
+                    </filter>
+                    <filter id="fuelFilterMedium">
+                        <feFlood flood-color="#ffff00" result="flood" />
+                        <feComposite in="flood" in2="SourceAlpha" operator="atop" />
+                    </filter>
+                    <filter id="fuelFilterLow">
+                        <feFlood flood-color="#ff0000" result="flood" />
+                        <feComposite in="flood" in2="SourceAlpha" operator="atop" />
+                    </filter>
+                    <filter id="fuelFilterGrey">
+                        <feFlood flood-color="#666666" result="flood" />
+                        <feComposite in="flood" in2="SourceAlpha" operator="atop" />
+                    </filter>
+                </defs>
+                <image width="100%" height="100%" href="texture/fuel.png" filter="url(#fuelFilterGrey)" />
+            </svg>
+
+            <!-- Low Beam Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" id="icon-low-beam" width="24" height="24">
+                <defs>
+                    <filter id="lowBeamFilterActive">
+                        <feFlood flood-color="#00aaff" result="flood" />
+                        <feComposite in="flood" in2="SourceAlpha" operator="atop" />
+                    </filter>
+                    <filter id="lowBeamFilterGrey">
+                        <feFlood flood-color="#666666" result="flood" />
+                        <feComposite in="flood" in2="SourceAlpha" operator="atop" />
+                    </filter>
+                </defs>
+                <image width="100%" height="100%" href="texture/low-beam.png" filter="url(#lowBeamFilterGrey)" />
+            </svg>
+
+            <!-- High Beam Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" id="icon-high-beam" width="24" height="24">
+                <defs>
+                    <filter id="highBeamFilterActive">
+                        <feFlood flood-color="#0066ff" result="flood" />
+                        <feComposite in="flood" in2="SourceAlpha" operator="atop" />
+                    </filter>
+                    <filter id="highBeamFilterGrey">
+                        <feFlood flood-color="#666666" result="flood" />
+                        <feComposite in="flood" in2="SourceAlpha" operator="atop" />
+                    </filter>
+                </defs>
+                <image width="100%" height="100%" href="texture/high-beam.png" filter="url(#highBeamFilterGrey)" />
+            </svg>
+
+            <!-- Left Turn Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" id="icon-left" width="24" height="24">
+                <defs>
+                    <filter id="leftFilterActive">
+                        <feFlood flood-color="#ff8800" result="flood" />
+                        <feComposite in="flood" in2="SourceAlpha" operator="atop" />
+                    </filter>
+                    <filter id="leftFilterGrey">
+                        <feFlood flood-color="#666666" result="flood" />
+                        <feComposite in="flood" in2="SourceAlpha" operator="atop" />
+                    </filter>
+                </defs>
+                <image width="100%" height="100%" href="texture/left.png" filter="url(#leftFilterGrey)" />
+            </svg>
+
+            <!-- Right Turn Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" id="icon-right" width="24" height="24">
+                <defs>
+                    <filter id="rightFilterActive">
+                        <feFlood flood-color="#ff8800" result="flood" />
+                        <feComposite in="flood" in2="SourceAlpha" operator="atop" />
+                    </filter>
+                    <filter id="rightFilterGrey">
+                        <feFlood flood-color="#666666" result="flood" />
+                        <feComposite in="flood" in2="SourceAlpha" operator="atop" />
+                    </filter>
+                </defs>
+                <image width="100%" height="100%" href="texture/right.png" filter="url(#rightFilterGrey)" />
+            </svg>
+
+            <!-- Seatbelt Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" id="icon-seatbelt" width="24" height="24">
+                <defs>
+                    <filter id="seatbeltFilterActive">
+                        <feFlood flood-color="#00ff00" result="flood" />
+                        <feComposite in="flood" in2="SourceAlpha" operator="atop" />
+                    </filter>
+                    <filter id="seatbeltFilterWarning">
+                        <feFlood flood-color="#ff0000" result="flood" />
+                        <feComposite in="flood" in2="SourceAlpha" operator="atop" />
+                    </filter>
+                    <filter id="seatbeltFilterGrey">
+                        <feFlood flood-color="#666666" result="flood" />
+                        <feComposite in="flood" in2="SourceAlpha" operator="atop" />
+                    </filter>
+                </defs>
+                <image width="100%" height="100%" href="texture/seatbelt.png" filter="url(#seatbeltFilterGrey)" />
+            </svg>
+        </div>
+    </div>
+
+
+
+    <!-- Audio elements for indicators and seatbelt -->
+    <audio id="audio-tick" loop>
+        <source src="sound/tick.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="audio-seatbelt-warning" loop>
+        <source src="sound/warningseatbelt.mp3" type="audio/mpeg">
+    </audio>
+    <!-- Additional audio elements -->
+    <audio id="audio-alarm" loop>
+        <source src="sound/sbwarning.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="audio-engine-warn1">
+        <source src="sound/egwarn1.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="audio-engine-warn2">
+        <source src="sound/egwarn2.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="audio-fuel-50">
+        <source src="sound/f50p.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="audio-fuel-10">
+        <source src="sound/f10p.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
